@@ -24,5 +24,8 @@ public class Constantes {
 	public static final String REFRESH_PARAM_ROOM = "refreshParam";
 	public static final int CHAT_WIDTH = 700;
 	public static final int CHAT_HEIGHT = 500;
-
+	public static final String MESSAGE_ERROR = "Ocurrio un error";
+	public static final String INCORRECT_MESSAGE = "incorrectMessage";
+	public static final String MESSAGE_REQUEST = "messageRequest";
+	public static final String MESSAGE_REQUEST_SV = "messageRequestSV";
 }

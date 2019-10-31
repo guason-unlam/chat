@@ -1,11 +1,13 @@
 package cliente;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.json.Json;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,8 +16,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import servidor.Constantes;
-import java.awt.Rectangle;
-import java.awt.Color;
 
 public class VentanaChat extends JFrame implements ActionListener {
 	/**
@@ -86,6 +86,30 @@ public class VentanaChat extends JFrame implements ActionListener {
 			}
 		});
 
+		// FALTA TERMINAR
+		// POR AHORA SE CUELGA
+		// this.msg_txt.addActionListener(sendMessagePerformed());
+		// this.msg_send.addActionListener(sendMessagePerformed());
+
+	}
+
+	private ActionListener sendMessagePerformed() {
+		String msg = Cliente.getConexionInterna().enviarMensaje(this.msg_txt.getText());
+
+		Cliente.getConexionServidor()
+				.enviarAlServidor(Json.createObjectBuilder().add("type", Constantes.MESSAGE_REQUEST_SV)
+						.add("username", this.usuario.getNombre()).add("message", this.msg_txt.getText()).build());
+
+		if (msg == "") {
+			this.msg_txt.setText("");
+			this.msg_txt.setFocusable(true);
+		} else {
+			JOptionPane.showMessageDialog(null, "Error al enviar el mensaje, intente nuevamente", "Error",
+					JOptionPane.ERROR_MESSAGE);
+			this.msg_txt.setFocusable(true);
+		}
+
+		return null;
 	}
 
 	@Override
@@ -100,7 +124,5 @@ public class VentanaChat extends JFrame implements ActionListener {
 				System.exit(0);
 			}
 		}
-
-		System.out.println(comStr + " Selected");
 	}
 }

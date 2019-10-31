@@ -5,14 +5,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObjectBuilder;
-
-import com.google.gson.JsonArray;
-
-import servidor.ConexionServidor;
-
 public class Servidor {
 	private static ArrayList<Usuario> usuariosActivos = new ArrayList<Usuario>();
 	private static ArrayList<Cliente> clientesConectados = new ArrayList<Cliente>();

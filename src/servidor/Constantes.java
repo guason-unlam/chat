@@ -22,6 +22,7 @@ public class Constantes {
 	public static final String REQUEST_REFRESH = "requestRefresh";
 	public static final String INCORRECT_LOGOUT = "incorrectLogout";
 	public static final String REFRESH_PARAM_ROOM = "refreshParam";
-	
+	public static final int CHAT_WIDTH = 700;
+	public static final int CHAT_HEIGHT = 500;
 
 }

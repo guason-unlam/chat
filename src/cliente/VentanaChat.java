@@ -24,7 +24,7 @@ public class VentanaChat extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 9099821102113802071L;
-	private static Usuario usuario;
+	private Usuario usuario;
 	private JTextField msg_txt;
 	private static JTextArea msg_area;
 	private JButton msg_send;
@@ -150,7 +150,7 @@ public class VentanaChat extends JFrame implements ActionListener {
 		}
 	}
 	
-	public static void mostrarMensaje(String mensaje) {
-		msg_area.append(usuario.getNombre()+": "+ mensaje+'\n');
+	public static void mostrarMensaje(String usuario, String mensaje) {
+		msg_area.append(usuario+": "+ mensaje+'\n');
 	}
 }

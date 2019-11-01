@@ -36,11 +36,18 @@ public class ConexionServidor extends Thread {
 				String tipoDeMensaje = entradaJson.getString("type");
 				switch(tipoDeMensaje) {
 				case Constantes.MESSAGE_REQUEST:
-					VentanaChat.mostrarMensaje(entradaJson.getString("message"));
+					VentanaChat.mostrarMensaje(entradaJson.getString("username"),entradaJson.getString("message"));
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.getMessage() + "[ConexionServidor] Error del lado del cliente ");
+				conectado = false;
+
+				try {
+					this.entrada.close();
+					this.salida.close();
+				} catch (IOException ex2) {
+					System.out.println("Error al cerrar los stream de entrada y salida:" + ex2.getMessage());
+				}
 			}
 		}
 				

@@ -62,7 +62,7 @@ public class ConexionServidor extends Thread {
 					for(ConexionServidor u : Servidor.getServidoresConectados())
 					{
 						String respuestaMensajeOk = Json.createObjectBuilder()
-								.add("type", Constantes.MESSAGE_REQUEST).add("message", entradaJson.getString("message")).build().toString();
+								.add("type", Constantes.MESSAGE_REQUEST).add("username", entradaJson.getString("username")).add("message", entradaJson.getString("message")).build().toString();
 						u.salida.writeUTF(respuestaMensajeOk);	
 					}
 				break;

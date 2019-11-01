@@ -90,50 +90,31 @@ public class VentanaChat extends JFrame implements ActionListener {
 
 		// FALTA TERMINAR
 		// POR AHORA SE CUELGA
-//		 this.msg_txt.addActionListener(sendMessagePerformed());
-		this.msg_txt.addKeyListener(new KeyListener() {
-			
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if( arg0.getKeyCode() == KeyEvent.VK_ENTER)
-					sendMessagePerformed();
-				
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-//		 this.msg_send.addActionListener(sendMessagePerformed());
+		this.msg_txt.addActionListener(sendMessagePerformed());
+		this.msg_send.addActionListener(sendMessagePerformed());
 
 	}
 
 	private ActionListener sendMessagePerformed() {
-		String text = this.msg_txt.getText();
-		String msg = Cliente.getConexionInterna().enviarMensaje(text);
-
-		Cliente.getConexionServidor()
-				.enviarAlServidor(Json.createObjectBuilder().add("type", Constantes.MESSAGE_REQUEST_SV)
-						.add("username", this.usuario.getNombre()).add("message", this.msg_txt.getText()).build());
-
-		if (msg == null) {
-			this.msg_txt.setText("");
-			this.msg_txt.setFocusable(true);
-		} else {
-			JOptionPane.showMessageDialog(null, "Error al enviar el mensaje, intente nuevamente", "Error",
-					JOptionPane.ERROR_MESSAGE);
-			this.msg_txt.setFocusable(true);
-		}
-
-		return null;
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			String text = msg_txt.getText();
+			String msg = Cliente.getConexionInterna().enviarMensaje(text);
+	
+			Cliente.getConexionServidor()
+					.enviarAlServidor(Json.createObjectBuilder().add("type", Constantes.MESSAGE_REQUEST_SV)
+							.add("username", usuario.getNombre()).add("message", msg_txt.getText()).build());
+	
+			if (msg == null) {
+				msg_txt.setText("");
+				msg_txt.setFocusable(true);
+			} else {
+				JOptionPane.showMessageDialog(null, "Error al enviar el mensaje, intente nuevamente", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				msg_txt.setFocusable(true);
+			}
+			}
+		};
 	}
 
 	@Override

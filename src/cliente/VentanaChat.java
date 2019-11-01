@@ -14,8 +14,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultCaret;
 
 import servidor.Constantes;
 
@@ -37,16 +39,26 @@ public class VentanaChat extends JFrame implements ActionListener {
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(null);
 		setTitle("Chat");
-
 		msg_area = new JTextArea();
 		msg_area.setBackground(Color.LIGHT_GRAY);
-		msg_area.setBounds(new Rectangle(188, 71, 496, 310));
-		msg_area.setAutoscrolls(false);
-		msg_area.setMaximumSize(new Dimension(50, 50));
-		msg_area.setMinimumSize(new Dimension(1, 1));
-		msg_area.setPreferredSize(new Dimension(350, 350));
 		msg_area.setEditable(false);
-		getContentPane().add(msg_area);
+		DefaultCaret caret = (DefaultCaret)msg_area.getCaret();
+		 caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		JScrollPane scroller = new JScrollPane(msg_area);
+		scroller.setBackground(Color.LIGHT_GRAY);
+		scroller.setBounds(new Rectangle(188, 71, 496, 310));
+		scroller.setMaximumSize(new Dimension(50, 50));
+		scroller.setMinimumSize(new Dimension(1, 1));
+		scroller.setPreferredSize(new Dimension(350, 350));
+//		msg_area.setBounds(0,0,scroller.getWidth(),scroller.getHeight());
+//		msg_area.setBounds(new Rectangle(188, 71, 496, 310));
+//		msg_area.setAutoscrolls(true);
+//		msg_area.setMaximumSize(new Dimension(50, 50));
+//		msg_area.setMinimumSize(new Dimension(1, 1));
+//		msg_area.setPreferredSize(new Dimension(350, 350));
+//		getContentPane().add(msg_area);
+		getContentPane().add(scroller);
+//		scroller.setVisible(true);
 
 		msg_txt = new JTextField();
 		msg_txt.setBounds(new Rectangle(188, 401, 390, 59));

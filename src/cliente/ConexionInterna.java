@@ -42,7 +42,7 @@ public class ConexionInterna extends Thread {
 
 			this.salidaDatos.writeUTF(new Message(Constantes.LOGIN_REQUEST, request).toJson());
 
-			this.message = (Message) new Gson().fromJson((String) entradaDatos.readUTF(), Message.class);
+			this.message = (Message) new Gson().fromJson((String)entradaDatos.readUTF(), Message.class);
 			switch (this.message.getType()) {
 			case Constantes.CORRECT_LOGIN:
 				this.usuario = new Gson().fromJson((String) message.getData(), Usuario.class);
@@ -105,10 +105,8 @@ public class ConexionInterna extends Thread {
 			// Le paso user y mensaje
 			String request = Json.createObjectBuilder().add("username", usuario.getNombre()).add("message", text)
 					.build().toString();
-
 			this.salidaDatos.writeUTF(new Message(Constantes.MESSAGE_REQUEST, request).toJson());
-
-			this.message = (Message) new Gson().fromJson((String) entradaDatos.readUTF(), Message.class);
+			this.message = (Message) new Gson().fromJson((String)entradaDatos.readUTF(),Message.class);
 			switch (this.message.getType()) {
 			case Constantes.INCORRECT_MESSAGE:
 				return Constantes.MESSAGE_ERROR;

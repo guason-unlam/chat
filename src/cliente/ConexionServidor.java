@@ -3,9 +3,14 @@ package cliente;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.Socket;
 
+import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
+
+import servidor.Constantes;
 
 public class ConexionServidor extends Thread {
 
@@ -15,6 +20,32 @@ public class ConexionServidor extends Thread {
 	private DataInputStream entrada;
 	private DataOutputStream salida;
 
+	@Override
+	public void run() {
+		boolean conectado = true;
+
+		while (conectado) {
+
+			try {
+				String entrada;
+					entrada = (String) this.entrada.readUTF();
+				JsonReader jsonReader = Json.createReader(new StringReader(entrada));
+				JsonObject entradaJson = jsonReader.readObject();
+				jsonReader.close();
+
+				String tipoDeMensaje = entradaJson.getString("type");
+				switch(tipoDeMensaje) {
+				case Constantes.MESSAGE_REQUEST:
+					VentanaChat.mostrarMensaje(entradaJson.getString("message"));
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+				
+	}
+	
 	public ConexionServidor(Socket servidorOut, Socket servidorIn) {
 		this.socketIn = servidorIn;
 		this.socketOut = servidorOut;

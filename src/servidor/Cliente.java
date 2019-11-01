@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Properties;
 
+import javax.json.Json;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -86,6 +88,10 @@ public class Cliente extends Thread {
 						}
 					}
 					break;
+				case Constantes.MESSAGE_REQUEST:
+					String respuestaMensajeOk = Json.createObjectBuilder()
+							.add("type", Constantes.MESSAGE_REQUEST).build().toString();
+					this.salida.writeUTF(respuestaMensajeOk);
 				default:
 					break;
 				}

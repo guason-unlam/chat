@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.json.Json;
 import javax.swing.JButton;
@@ -22,7 +24,7 @@ public class VentanaChat extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 9099821102113802071L;
-	private Usuario usuario;
+	private static Usuario usuario;
 	private JTextField msg_txt;
 	private static JTextArea msg_area;
 	private JButton msg_send;
@@ -88,19 +90,41 @@ public class VentanaChat extends JFrame implements ActionListener {
 
 		// FALTA TERMINAR
 		// POR AHORA SE CUELGA
-		// this.msg_txt.addActionListener(sendMessagePerformed());
-		// this.msg_send.addActionListener(sendMessagePerformed());
+//		 this.msg_txt.addActionListener(sendMessagePerformed());
+		this.msg_txt.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if( arg0.getKeyCode() == KeyEvent.VK_ENTER)
+					sendMessagePerformed();
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+//		 this.msg_send.addActionListener(sendMessagePerformed());
 
 	}
 
 	private ActionListener sendMessagePerformed() {
-		String msg = Cliente.getConexionInterna().enviarMensaje(this.msg_txt.getText());
+		String text = this.msg_txt.getText();
+		String msg = Cliente.getConexionInterna().enviarMensaje(text);
 
 		Cliente.getConexionServidor()
 				.enviarAlServidor(Json.createObjectBuilder().add("type", Constantes.MESSAGE_REQUEST_SV)
 						.add("username", this.usuario.getNombre()).add("message", this.msg_txt.getText()).build());
 
-		if (msg == "") {
+		if (msg == null) {
 			this.msg_txt.setText("");
 			this.msg_txt.setFocusable(true);
 		} else {
@@ -124,5 +148,9 @@ public class VentanaChat extends JFrame implements ActionListener {
 				System.exit(0);
 			}
 		}
+	}
+	
+	public static void mostrarMensaje(String mensaje) {
+		msg_area.append(usuario.getNombre()+": "+ mensaje+'\n');
 	}
 }

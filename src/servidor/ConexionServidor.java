@@ -43,8 +43,8 @@ public class ConexionServidor extends Thread {
 				jsonReader.close();
 
 				String tipoDeMensaje = entradaJson.getString("type");
-
-				if (tipoDeMensaje.equals(Constantes.LOGIN_REQUEST_SV)) {
+				switch(tipoDeMensaje) {
+				case Constantes.LOGIN_REQUEST_SV:
 					for (Usuario u : Servidor.getUsuariosActivos()) {
 						if (u.getNombre().equals(entradaJson.getString("username"))) {
 							this.usuario = u;
@@ -57,6 +57,15 @@ public class ConexionServidor extends Thread {
 						System.out.println("[LOGIN]Usuario " + this.usuario.getNombre() + " se logeo correctamente.");
 						this.salida.writeUTF(respuestaLogueoOk);
 					}
+				break;
+				case Constantes.MESSAGE_REQUEST_SV:
+					for(ConexionServidor u : Servidor.getServidoresConectados())
+					{
+						String respuestaMensajeOk = Json.createObjectBuilder()
+								.add("type", Constantes.MESSAGE_REQUEST).add("message", entradaJson.getString("message")).build().toString();
+						u.salida.writeUTF(respuestaMensajeOk);	
+					}
+				break;
 				}
 
 			} catch (IOException ex) {

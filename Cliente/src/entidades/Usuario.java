@@ -1,4 +1,4 @@
-package cliente;
+package entidades;
 
 public class Usuario {
 	private String nombre = "";

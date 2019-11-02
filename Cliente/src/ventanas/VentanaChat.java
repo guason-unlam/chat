@@ -1,4 +1,4 @@
-package cliente;
+package ventanas;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,9 +22,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultCaret;
-import javax.swing.text.DefaultStyledDocument;
 
-import servidor.Constantes;
+import conexion.Cliente;
+import entidades.Usuario;
+import utils.Constantes;
+import utils.JTextFieldLimit;
 
 public class VentanaChat extends JFrame implements ActionListener {
 	/**
@@ -37,7 +39,6 @@ public class VentanaChat extends JFrame implements ActionListener {
 	private JButton msg_send;
 	private InputMap inputMap;
 	private ActionMap actionMap;
-	private DefaultStyledDocument doc;
 
 	public VentanaChat() {
 		getContentPane().setBackground(SystemColor.scrollbar);

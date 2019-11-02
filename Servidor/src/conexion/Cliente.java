@@ -1,4 +1,4 @@
-package servidor;
+package conexion;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,6 +10,9 @@ import javax.json.Json;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
+import entidades.Usuario;
+import utils.Constantes;
 
 public class Cliente extends Thread {
 	private Socket socket;
@@ -52,7 +55,6 @@ public class Cliente extends Thread {
 								+ " fracaso en su inicio de sesion.");
 					} else {
 						boolean usuarioDuplicado = false;
-						System.out.println(Servidor.getUsuariosActivos().size());
 
 						for (Usuario usuarioActivo : Servidor.getUsuariosActivos()) {
 

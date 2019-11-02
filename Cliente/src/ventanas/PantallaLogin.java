@@ -1,5 +1,6 @@
-package cliente;
+package ventanas;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,8 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import servidor.Constantes;
-import java.awt.Color;
+import conexion.Cliente;
+import entidades.Usuario;
+import utils.Constantes;
+import utils.JTextFieldLimit;
 
 public class PantallaLogin extends JFrame {
 

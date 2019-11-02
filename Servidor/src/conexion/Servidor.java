@@ -1,9 +1,12 @@
-package servidor;
+package conexion;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import entidades.Usuario;
+import utils.Constantes;
 
 public class Servidor {
 	private static ArrayList<Usuario> usuariosActivos = new ArrayList<Usuario>();

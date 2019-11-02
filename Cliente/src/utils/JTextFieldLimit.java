@@ -1,4 +1,4 @@
-package cliente;
+package utils;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -11,7 +11,7 @@ public class JTextFieldLimit extends PlainDocument {
 	private static final long serialVersionUID = -427368404721528220L;
 	private int limit;
 
-	JTextFieldLimit(int limit) {
+	public JTextFieldLimit(int limit) {
 		super();
 		this.limit = limit;
 	}

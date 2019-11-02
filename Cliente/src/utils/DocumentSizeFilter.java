@@ -1,4 +1,4 @@
-package cliente;
+package utils;
 
 import java.awt.Toolkit;
 

@@ -1,9 +1,10 @@
-package cliente;
+package conexion;
 
 import java.io.IOException;
 import java.net.Socket;
 
-import servidor.Constantes;
+import utils.Constantes;
+import ventanas.PantallaLogin;
 
 public class Cliente {
 	private static Socket servidorIn;

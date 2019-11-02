@@ -1,4 +1,4 @@
-package servidor;
+package conexion;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,6 +10,9 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+
+import entidades.Usuario;
+import utils.Constantes;
 
 public class ConexionServidor extends Thread {
 

@@ -1,4 +1,4 @@
-package cliente;
+package conexion;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,7 +10,8 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-import servidor.Constantes;
+import utils.Constantes;
+import ventanas.VentanaChat;
 
 public class ConexionServidor extends Thread {
 

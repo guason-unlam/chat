@@ -1,4 +1,4 @@
-package cliente;
+package conexion;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,8 +9,8 @@ import javax.json.Json;
 
 import com.google.gson.Gson;
 
-import servidor.Constantes;
-import servidor.Message;
+import entidades.Usuario;
+import utils.Constantes;
 
 public class ConexionInterna extends Thread {
 	private Socket socketIn;

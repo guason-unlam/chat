@@ -11,8 +11,8 @@ public class Constantes {
 	public static final String LOGIN_REQUEST_SERVER_CORRECT = "loginRequestOK";
 	public static final String INCORRECT_LOGIN = "incorrectLogin";
 	public static final String REFRESH_ROOM = "actualizarSala";
-	public static final int LOGIN_WIDTH = 500;
-	public static final int LOGIN_HEIGHT = 300;
+	public static final int LOGIN_WIDTH = 400;
+	public static final int LOGIN_HEIGHT = 250;
 	public static final String IP = "localhost";
 	public static final String CORRECT_LOGIN = "loginOk";
 	public static final String LOGIN_REQUEST_SV = "loginRequest";
@@ -22,7 +22,7 @@ public class Constantes {
 	public static final String REQUEST_REFRESH = "requestRefresh";
 	public static final String INCORRECT_LOGOUT = "incorrectLogout";
 	public static final String REFRESH_PARAM_ROOM = "refreshParam";
-	public static final int CHAT_WIDTH = 700;
+	public static final int CHAT_WIDTH = 540;
 	public static final int CHAT_HEIGHT = 500;
 	public static final String MESSAGE_ERROR = "Ocurrio un error";
 	public static final String INCORRECT_MESSAGE = "incorrectMessage";

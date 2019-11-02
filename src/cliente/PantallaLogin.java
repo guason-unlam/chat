@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import servidor.Constantes;
+import java.awt.Color;
 
 public class PantallaLogin extends JFrame {
 
@@ -40,18 +41,21 @@ public class PantallaLogin extends JFrame {
 		JLabel usernameLabel = new JLabel("Nombre");
 		usernameLabel.setFont(new Font("Tahoma", Font.PLAIN, 39));
 		usernameLabel.setToolTipText("");
-		usernameLabel.setBounds(132, 22, 142, 70);
+		usernameLabel.setBounds(22, 38, 142, 70);
 		this.getContentPane().add(usernameLabel);
 
 		this.username = new JTextField();
 		this.username.setToolTipText("Ingrese su nombre");
-		this.username.setBounds(109, 103, 186, 65);
+		this.username.setBounds(174, 53, 186, 40);
 		this.username.setColumns(10);
+		username.setDocument(new JTextFieldLimit(10));
 		this.getContentPane().add(this.username);
 
 		this.btnLogin = new JButton("Iniciar sesi\u00F3n");
+		btnLogin.setBackground(Color.CYAN);
+		this.btnLogin.setFocusPainted(false);
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		this.btnLogin.setBounds(85, 206, 272, 54);
+		this.btnLogin.setBounds(22, 135, 338, 54);
 
 		this.getContentPane().add(this.btnLogin);
 
@@ -70,7 +74,12 @@ public class PantallaLogin extends JFrame {
 			this.username.setFocusable(true);
 			return;
 		}
-
+		if (this.username.getText().length() < 4 || this.username.getText().length() > 10) {
+			JOptionPane.showMessageDialog(null, "El nombe de usuario debe tener entre 4 y 10 caracteres", "Error login",
+					JOptionPane.WARNING_MESSAGE);
+			this.username.setFocusable(true);
+			return;
+		}
 		Usuario usuario = Cliente.getConexionInterna().logear(this.username.getText());
 
 		Cliente.getConexionServidor().enviarAlServidor(Json.createObjectBuilder()

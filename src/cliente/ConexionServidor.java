@@ -67,7 +67,6 @@ public class ConexionServidor extends Thread {
 
 	public void enviarAlServidor(JsonObject paquete) {
 		try {
-			System.out.println(paquete.toString());
 			this.salida.writeUTF(paquete.toString());
 		} catch (IOException e) {
 			System.out.println("Error " + paquete.toString());

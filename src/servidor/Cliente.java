@@ -52,9 +52,11 @@ public class Cliente extends Thread {
 								+ " fracaso en su inicio de sesion.");
 					} else {
 						boolean usuarioDuplicado = false;
+						System.out.println(Servidor.getUsuariosActivos().size());
+
 						for (Usuario usuarioActivo : Servidor.getUsuariosActivos()) {
 
-							if (usuarioActivo.getNombre() == usuario.getNombre()) {
+							if (usuarioActivo.getNombre().equals(usuario.getNombre())) {
 								this.salida.flush();
 								this.salida.writeUTF(new Message(Constantes.DUPLICATED_LOGIN, null).toJson());
 								usuarioDuplicado = true;
@@ -89,8 +91,8 @@ public class Cliente extends Thread {
 					}
 					break;
 				case Constantes.MESSAGE_REQUEST:
-					String respuestaMensajeOk = Json.createObjectBuilder()
-							.add("type", Constantes.MESSAGE_REQUEST).build().toString();
+					String respuestaMensajeOk = Json.createObjectBuilder().add("type", Constantes.MESSAGE_REQUEST)
+							.build().toString();
 					this.salida.writeUTF(respuestaMensajeOk);
 				default:
 					break;
